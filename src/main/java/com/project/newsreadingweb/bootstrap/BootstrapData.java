@@ -1,6 +1,8 @@
 package com.project.newsreadingweb.bootstrap;
 
+import com.project.newsreadingweb.entities.Author;
 import com.project.newsreadingweb.entities.Post;
+import com.project.newsreadingweb.repositories.AuthorRepository;
 import com.project.newsreadingweb.repositories.PostRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +26,7 @@ public class BootstrapData implements CommandLineRunner {
     }
 
     private final PostRepository postRepository;
+
     private void loadPostData() {
         if (postRepository.count() == 0){
             Post post1 = Post.builder()
@@ -60,7 +63,6 @@ public class BootstrapData implements CommandLineRunner {
             postRepository.save(post2);
             postRepository.save(post3);
         }
-
     }
 
 

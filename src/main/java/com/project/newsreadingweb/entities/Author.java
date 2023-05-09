@@ -3,42 +3,37 @@ package com.project.newsreadingweb.entities;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
+import org.springframework.boot.autoconfigure.web.WebProperties;
 
-import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Table(name = "posts")
-@Data
 @Builder
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Post {
+@Table(name="authors")
+public class Author {
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     @JdbcTypeCode(SqlTypes.CHAR)
-    @Column(length = 36, columnDefinition = "varchar(36)", updatable = false, nullable = false, name = "post_id")
+    @Column(length = 36, columnDefinition = "varchar(36)", updatable = false, nullable = false, name = "author_id")
     private UUID id;
 
     @NotNull
     @NotBlank
-    private String title;
-    private String description;
-    private String imageUrl;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+    private String name;
+    private String nationality;
 
-    @NotNull
-    @NotBlank
-    private String authorRelatedInfo;
-    private int likeCount;
-
-    @ManyToOne
-    @JoinColumn(name="author_id")
-    private Author author;
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
+    private List<Post> posts;
 }
