@@ -26,42 +26,21 @@ public class BootstrapData implements CommandLineRunner {
     }
 
     private final PostRepository postRepository;
-
     private void loadPostData() {
         if (postRepository.count() == 0){
             Post post1 = Post.builder()
                     .title("Galaxy Cat")
-                    .description("Cat in galaxy")
-                    .imageUrl("null")
+                    .body("Cat in galaxy")
+                    .thumbnail("null")
                     .createdAt(LocalDateTime.now())
                     .updatedAt(LocalDateTime.now())
                     .authorRelatedInfo("James Brown")
-                    .likeCount(100)
+                    .isLike(true)
+                    .isBookmarked(true)
                     .build();
 
-            Post post2 = Post.builder()
-                    .title("Red Cabbage")
-                    .description("Cabbage with red")
-                    .imageUrl("null")
-                    .createdAt(LocalDateTime.now())
-                    .updatedAt(LocalDateTime.now())
-                    .authorRelatedInfo("Mason Mount")
-                    .likeCount(7)
-                    .build();
-
-            Post post3 = Post.builder()
-                    .title("Sunshine City")
-                    .description("City with sunshine")
-                    .imageUrl("null")
-                    .createdAt(LocalDateTime.now())
-                    .updatedAt(LocalDateTime.now())
-                    .authorRelatedInfo("John Martens")
-                    .likeCount(3379)
-                    .build();
 
             postRepository.save(post1);
-            postRepository.save(post2);
-            postRepository.save(post3);
         }
     }
 

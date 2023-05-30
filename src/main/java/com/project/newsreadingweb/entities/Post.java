@@ -1,5 +1,6 @@
 package com.project.newsreadingweb.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -9,6 +10,7 @@ import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -28,17 +30,22 @@ public class Post {
     @NotNull
     @NotBlank
     private String title;
-    private String description;
-    private String imageUrl;
+    private String body;
+    private String thumbnail;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
     @NotNull
     @NotBlank
     private String authorRelatedInfo;
-    private int likeCount;
+    boolean isLike;
+    boolean isBookmarked;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name="author_id")
+    @JsonManagedReference
     private Author author;
+
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
+    private List<Comment> comments;
 }
