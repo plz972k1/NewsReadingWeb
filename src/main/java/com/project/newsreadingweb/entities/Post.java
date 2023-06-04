@@ -1,5 +1,6 @@
 package com.project.newsreadingweb.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -43,7 +44,6 @@ public class Post {
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name="author_id")
-    @JsonManagedReference
     private Author author;
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)

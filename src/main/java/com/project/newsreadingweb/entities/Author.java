@@ -36,6 +36,5 @@ public class Author {
     private String nationality;
 
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
-    @JsonBackReference
     private List<Post> posts;
 }
