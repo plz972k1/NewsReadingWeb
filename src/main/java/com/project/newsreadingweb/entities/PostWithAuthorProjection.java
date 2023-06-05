@@ -16,7 +16,7 @@ public interface PostWithAuthorProjection {
     String getThumbnail();
     LocalDateTime getCreatedAt();
     LocalDateTime getUpdatedAt();
-    String getAuthorRelatedInfo();
+    String getLink();
     boolean isLike();
     boolean isBookmarked();
     AuthorProjection getAuthor();

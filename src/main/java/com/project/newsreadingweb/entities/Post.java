@@ -35,10 +35,7 @@ public class Post {
     private String thumbnail;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-
-    @NotNull
-    @NotBlank
-    private String authorRelatedInfo;
+    private String link;
     boolean isLike;
     boolean isBookmarked;
 

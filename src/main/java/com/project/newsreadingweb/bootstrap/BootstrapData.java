@@ -34,7 +34,7 @@ public class BootstrapData implements CommandLineRunner {
                     .thumbnail("null")
                     .createdAt(LocalDateTime.now())
                     .updatedAt(LocalDateTime.now())
-                    .authorRelatedInfo("James Brown")
+                    .link("google.com")
                     .isLike(true)
                     .isBookmarked(true)
                     .build();
