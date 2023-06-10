@@ -21,6 +21,13 @@ public interface PostWithAuthorProjection {
     boolean isBookmarked();
     AuthorProjection getAuthor();
     List<CommentProjection> getComments();
+    UserProjection getUser();
+    interface UserProjection {
+        UUID getId();
+        String getUsername();
+        String getEmail();
+
+    }
 
     interface CommentProjection {
         UUID getId();
