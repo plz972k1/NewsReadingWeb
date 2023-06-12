@@ -33,6 +33,7 @@ public interface PostWithAuthorProjection {
         UUID getId();
         String getContent();
         LocalDateTime getCreatedAt();
+        UserProjection getUser();
     }
 
     interface AuthorProjection {
