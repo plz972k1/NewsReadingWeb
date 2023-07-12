@@ -11,4 +11,5 @@ import java.util.UUID;
 @RepositoryRestResource(collectionResourceRel = "users", path = "users")
 @Repository
 public interface UserRepository extends JpaRepository<User, UUID> {
+    User findByUsername(String username);
 }
