@@ -1,11 +1,13 @@
 package com.project.newsreadingweb.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
@@ -31,22 +33,33 @@ public class Post {
     @NotNull
     @NotBlank
     private String title;
+
+
+    @Column(length = 50000, columnDefinition = "TEXT")
     private String body;
+
+
     private String thumbnail;
+    @CreationTimestamp
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private String link;
     boolean isLike;
     boolean isBookmarked;
 
+
+    private String userLikedPost;
+
+
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name="author_id")
+    @JoinColumn(name = "author_id")
     private Author author;
+
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     private List<Comment> comments;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name="user_id")
+    @JoinColumn(name = "user_id")
     private User user;
 }

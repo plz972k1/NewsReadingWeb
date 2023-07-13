@@ -1,13 +1,12 @@
 package com.project.newsreadingweb.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
@@ -31,6 +30,8 @@ public class Comment {
 
     @NotBlank
     private String content;
+
+    @CreationTimestamp
     private LocalDateTime createdAt;
 
     @ManyToOne
@@ -40,4 +41,5 @@ public class Comment {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
 }
